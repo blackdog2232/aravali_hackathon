@@ -17,7 +17,7 @@ if (!$lat || !$lon) {
 }
 
 // Replace this with your actual OpenCage API key
-$apiKey = "4c4819afab084100b8fa5b307f3130b8";
+$apiKey = "#######################";
 
 // Construct the URL to get location information from OpenCage
 $apiUrl = "https://api.opencagedata.com/geocode/v1/json?q=$lat+$lon&key=$apiKey";
