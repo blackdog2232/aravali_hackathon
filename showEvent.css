@@ -1,0 +1,133 @@
+/* Global styles for dark mode */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #121212; /* Dark background */
+    color: #e0e0e0; /* Light text for better contrast */
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 800px;
+    margin: 30px auto;
+    padding: 20px;
+    background-color: #1e1e1e; /* Darker container background */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    /* Removed border */
+}
+
+h2, h3 {
+    color: #e0e0e0; /* Light text for headings */
+    font-size: 24px;
+}
+
+p {
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+strong {
+    font-weight: bold;
+    color: #e0e0e0; /* Strong text in light color */
+}
+
+a.back-button {
+    margin-top: 20px;
+    display: inline-block;
+    padding: 12px 18px;
+    background-color: #007bff;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+a.back-button:hover {
+    background-color: #0056b3;
+}
+
+/* Comment Box */
+.comment-box {
+    margin-top: 30px;
+    padding: 20px;
+    background-color: #2c2c2c; /* Darker background for comment box */
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    /* Removed border */
+}
+
+textarea {
+    width: 100%;
+    padding: 12px;
+    border-radius: 5px;
+    font-size: 16px;
+    resize: vertical;
+    margin-bottom: 15px;
+    box-sizing: border-box;
+    background-color: #333; /* Darker background for textarea */
+    color: #e0e0e0; /* Light text for textarea */
+    /* Removed border */
+}
+
+button {
+    padding: 12px 24px;
+    background-color: #28a745;
+    color: white;
+    border: none; /* Removed border */
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #218838;
+}
+
+/* Comments List */
+.comments-container {
+    margin-top: 30px;
+    padding: 15px;
+    background-color: #2c2c2c;
+    border-radius: 8px;
+    /* Removed border */
+}
+
+.comment {
+    padding: 15px;
+    background-color: #1e1e1e; /* Dark background for each comment */
+    border-radius: 8px;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    /* Removed border */
+}
+
+.comment p {
+    font-size: 14px;
+}
+
+.comment small {
+    display: block;
+    margin-top: 8px;
+    font-size: 12px;
+    color: #888; /* Lighter color for small text */
+}
+
+/* Button to toggle comment visibility */
+.toggle-comments-btn {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none; /* Removed border */
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+.toggle-comments-btn:hover {
+    background-color: #0056b3;
+}

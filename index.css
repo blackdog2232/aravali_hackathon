@@ -1,0 +1,575 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body, html {
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: #121212;
+    color: white;
+    position: relative;
+    margin: 0;
+    padding: 0;
+}
+
+/* Content Styling */
+.content {
+    padding-top: 60px; /* Push content down to avoid navbar overlap */
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    flex-grow: 1;
+    gap: 10px;
+    position: relative; /* For z-index positioning of popups */
+}
+
+.profile-view, .center, .right-side {
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+}
+
+.profile-view {
+    background-color: #1e1e1e;
+    padding: 15px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+    border-radius: 5px;
+    /* Remove scrollbar */
+    overflow: hidden;
+}
+
+.center {
+    width: 50%;
+    background-color: #333333;
+    overflow-y: auto; /* Enable vertical scrolling */
+    opacity: 1; /* Fully visible by default */
+    position: relative;
+}
+
+.center.transparent {
+    width: 50%;
+    opacity: 0; /* Adjust the transparency as needed */
+    pointer-events: none; /* This will make the transparent div non-interactive */
+    position: absolute;
+}
+
+.new-div {
+    position: relative;
+    width: 50%;
+    transition: all 0.3s ease-in-out;
+    opacity: 1;
+    pointer-events: all; /* Make sure the new div is interactive */
+    display: none; /* Initially hidden */
+    background-color: #333333;
+    padding: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); /* Optional: Add some shadow for better visibility */
+    border-radius: 5px;
+}
+
+.add-friend-btn {
+    font-size: 24px;
+    text-decoration: none;
+    color: white;
+    background-color: #6200ea;
+    padding: 5px 10px;
+    border-radius: 50%;
+    display: inline-block;
+    text-align: center;
+}
+.right-side {
+    width: 25%; /* Increased width */
+    background-color: #1e1e1e;
+    overflow-y: auto; /* Enable vertical scrolling */
+    max-height: 600px; /* Max height for scrolling */
+}
+
+.activity {
+    background-color: #242424;
+    margin-bottom: 10px; /* Reduced margin to minimize space */
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+}
+
+#updateBtn, #logoutphone {
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #6200ea;
+    color: white;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #3700b3;
+}
+
+/* Chat Box */
+.chat-box {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 300px;
+    height: 400px;
+    background-color: #333333;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    display: none;
+    flex-direction: column;
+}
+
+.chat-header {
+    background-color: #6200ea;
+    color: white;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 5px 5px 0 0;
+}
+
+.chat-content {
+    flex-grow: 1;
+    padding: 10px;
+    overflow-y: auto;
+}
+
+#chatInput {
+    width: 80%;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 5px;
+    border: none;
+}
+
+.chat-toggle-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #6200ea;
+    padding: 10px 20px;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.chat-toggle-btn:hover {
+    background-color: #3700b3;
+}
+
+/* Pop-up for Profile Details and Important Things */
+.popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Center it */
+    width: 80%;
+    max-width: 600px;
+    background-color: rgba(30, 30, 30, 0.8); /* Slightly transparent background */
+    border-radius: 5px;
+    padding: 20px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    z-index: 100;
+    display: none;
+}
+
+.popup h2 {
+    margin-bottom: 20px;
+}
+
+/* Full-screen background blur overlay */
+.blur-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.6); /* Semi-transparent overlay */
+    backdrop-filter: blur(10px); /* Background blur */
+    z-index: 99; /* Make sure it's under the pop-ups */
+}
+
+
+
+/* For mobile */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+    }
+
+    .profile-view, .right-side {
+        display: none;
+    }
+
+    .center {
+        width: 100%;
+    }
+    .new-div{
+        width: 100%;
+    }
+    .chat-box {
+        width: 90%;
+    }
+
+    .chat-toggle-btn {
+        bottom: 10px;
+        right: 10px;
+    }
+
+
+    .mobile-btn {
+        padding: 10px;
+        background-color: #000000;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .mobile-btn:hover {
+        background-color: #000000;
+    }
+}
+
+@media (min-width: 769px) and (max-width: 1300px) {
+    .right-side{
+        display: none;
+    }
+    .center{
+        width:70%;
+    }
+}
+/* Webkit Scrollbar Styling (Chrome, Safari) */
+::-webkit-scrollbar {
+    width: 8px; /* Set the width of the vertical scrollbar */
+    height: 8px; /* Set the height of the horizontal scrollbar */
+}
+
+::-webkit-scrollbar-track {
+    background-color: #2c2c2c; /* Dark background color for track */
+    border-radius: 5px; /* Rounded corners for track */
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #888; /* Light gray thumb color */
+    border-radius: 5px; /* Rounded corners for thumb */
+    border: 2px solid #444; /* Darker border around thumb */
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: #555; /* Darker thumb color on hover */
+}
+
+/* For Firefox Scrollbars */
+.scrollable {
+    scrollbar-width: thin; /* Thin scrollbar */
+    scrollbar-color: #888 #2c2c2c; /* Light gray thumb color and dark track color */
+}
+
+/* Apply to elements with overflow */
+.right-side, .left-side {
+    overflow-y: auto;
+    max-height: 600px;
+    scrollbar-width: thin;
+    scrollbar-color: #888 #2c2c2c; /* Set the neutral colors */
+}
+
+/* Basic navbar style */
+.navbar {
+    background-color: #333;
+    width: 100%;
+    padding: 5px 0; /* Reduced padding */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 50px; /* Set a specific height for the navbar */
+}
+
+.navbar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    width: 100%; /* Ensure full width for alignment */
+    justify-content: space-between; /* Distribute items between left and right */
+    align-items: center;
+}
+
+/* Navbar buttons */
+.navbar ul li {
+    margin: 0 10px; /* Reduced margin */
+}
+
+.navbar ul li a,
+.navbar ul li button {
+    color: white;
+    text-decoration: none;
+    font-size: 16px; /* Reduced font size */
+    padding: 5px 10px; /* Reduced padding */
+    border: none;
+    background: none;
+}
+
+.navbar ul li a:hover,
+.navbar ul li button:hover {
+    color: #f39c12;
+}
+
+/* Dropdown menu styles */
+.dropdown {
+    position: relative;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 8px 16px; /* Reduced padding */
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background-color: #ddd;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/* Mobile buttons */
+.navbar-mobile-buttons {
+    display: flex;
+}
+
+.mobile-btn {
+    padding: 5px 10px; /* Reduced padding */
+    margin: 0 5px; /* Reduced margin */
+}
+
+/* Logout button */
+#logoutBtn {
+    padding: 5px 10px; /* Reduced padding */
+    margin-left: 10px;
+}
+
+/* Push the logout button to the end */
+.navbar-end {
+    margin-left: auto;
+}
+
+
+/* Mobile View (Below 768px) */
+@media (max-width: 768px) {
+    /* Mobile-specific button layout */
+    .navbar-mobile-buttons {
+        display: flex;
+        flex-direction: row; /* Change from column to row to make buttons adjacent */
+        justify-content: center; /* Center the buttons */
+        gap: 10px; /* Add space between buttons */
+        margin-top: 10px;
+    }
+
+    .navbar ul li {
+        margin: 15px 0; /* Vertical spacing for mobile */
+    }
+
+    /* Hide the Profile and Important Things buttons on Desktop */
+    .navbar-mobile-buttons {
+        display: flex;
+    }
+
+    /* Hide the logout button on mobile */
+    #logoutBtn {
+        display: none;
+    }
+}
+
+/* Desktop View (Above 768px) */
+@media (min-width: 769px) {
+    /* Always show the logout button on desktop */
+    #logoutBtn {
+        display: block;
+    }
+
+    /* Hide the Profile and Important Things buttons on Desktop */
+    .navbar-mobile-buttons {
+        display: none;
+    }
+}
+
+/* Adjust content on mobile */
+.content {
+    padding-top: 60px; /* Space for navbar */
+}
+
+
+/* === Custom Bottom Navbar === */
+.custom-navbar {
+    position: fixed;
+    bottom: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 85%;
+    max-width: 450px;
+    background: rgba(34, 34, 34, 0.6); /* Initially transparent background */
+    padding: 8px;
+    border-radius: 40px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.3);
+    z-index: 3;
+    transition: background 0.3s ease; /* Smooth transition for hover effect */
+}
+
+/* === Hover Effect === */
+.custom-navbar:hover {
+    background: rgba(34, 34, 34, 0.9); /* Darker background on hover */
+}
+
+        /* === Custom Navbar Items (Icons) === */
+        .custom-navbar-item {
+            position: relative;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 12px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .custom-navbar-item img {
+            width: 22px;
+            height: 22px;
+            filter: invert(1);
+            margin-bottom: 3px;
+        }
+
+        /* === Custom Center Add Button (Slim & Responsive) === */
+        .custom-navbar-add-btn {
+            background: #007BFF;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0px 0px 10px rgba(0, 123, 255, 0.5);
+            transition: all 0.3s ease-in-out;
+        }
+
+        .custom-navbar-add-btn img {
+            width: 26px;
+            height: 26px;
+            filter: invert(1);
+        }
+
+        /* Hover Effect */
+        .custom-navbar-item:hover {
+            color: #007BFF;
+        }
+
+        /* Add Button Hover Effect */
+        .custom-navbar-add-btn:hover {
+            background: #0056b3;
+            box-shadow: 0px 0px 15px rgba(0, 123, 255, 0.7);
+        }
+
+        /* === Custom Dropdown Wrapper (For Home Button) === */
+        .custom-navbar-dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        /* === Custom Dropdown Menu === */
+        .custom-navbar-dropdown-menu {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #333;
+            border-radius: 6px;
+            padding: 6px;
+            width: 120px;
+            text-align: center;
+            box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.3);
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease-in-out, transform 0.2s ease-in-out;
+            z-index: 1000;
+        }
+
+        /* Custom Dropdown Links */
+        .custom-navbar-dropdown-menu a {
+            display: block;
+            color: white;
+            text-decoration: none;
+            padding: 8px 0;
+            font-size: 13px;
+            transition: background 0.3s;
+        }
+
+        .custom-navbar-dropdown-menu a:hover {
+            background: #007BFF;
+        }
+
+        /* Show Custom Dropdown on Hover */
+        .custom-navbar-dropdown:hover .custom-navbar-dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-50%) translateY(-5px);
+        }
+
+        /* Ensure No Hover Gaps */
+        .custom-navbar-dropdown-menu:hover {
+            opacity: 1 !important;
+            visibility: visible !important;
+        }
+
+        /* === Custom Responsive Adjustments === */
+        @media (max-width: 500px) {
+            .custom-navbar {
+                width: 95%;
+                max-width: 380px;
+                padding: 6px;
+            }
+
+            .custom-navbar-item img {
+                width: 20px;
+                height: 20px;
+            }
+
+            .custom-navbar-add-btn {
+                width: 44px;
+                height: 44px;
+            }
+
+            .custom-navbar-add-btn img {
+                width: 24px;
+                height: 24px;
+            }
+
+            .custom-navbar-dropdown-menu {
+                width: 110px;
+            }
+        }

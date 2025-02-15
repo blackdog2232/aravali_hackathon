@@ -1,0 +1,29 @@
+.friend-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.friend-card {
+    border: 1px solid #ddd;
+    padding: 15px;
+    border-radius: 10px;
+    text-align: center;
+    width: 200px;
+}
+
+.friend-img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+}
+
+.btn {
+    display: inline-block;
+    padding: 8px 15px;
+    background: blue;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-top: 10px;
+}
