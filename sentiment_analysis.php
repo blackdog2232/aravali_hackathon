@@ -19,7 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST['comment'])) {
         CURLOPT_URL => "https://api.apilayer.com/sentiment/analysis",
         CURLOPT_HTTPHEADER => array(
             "Content-Type: text/plain",
-            "apikey: iaL0CxTFiOOr9ZxNSdLszDZjevMm5Wpl"
+            "apikey: ###############"
         ),
         CURLOPT_RETURNTRANSFER => true,
         CURLOPT_POST => true,
